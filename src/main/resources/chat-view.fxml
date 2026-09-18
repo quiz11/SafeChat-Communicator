@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.safechat.client.ChatController">
+
+    <VBox fx:id="loginPanel" alignment="CENTER" spacing="15" style="-fx-background-color: #f4f4f4;">
+        <Label text="SafeChat E2E" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+        <TextField fx:id="hostField" text="localhost" promptText="Server IP Address" maxWidth="200"/>
+        <TextField fx:id="portField" text="5000" promptText="Port" maxWidth="200"/>
+        <TextField fx:id="nickField" promptText="Your Nickname" maxWidth="200"/>
+        <Button fx:id="connectButton" text="Connect" onAction="#handleConnect" prefWidth="200" style="-fx-font-weight: bold;"/>
+        <Label fx:id="errorLabel" textFill="RED"/>
+    </VBox>
+
+    <BorderPane fx:id="chatPanel" visible="false">
+
+        <top>
+            <HBox alignment="CENTER_RIGHT">
+                <padding><Insets top="10" right="15" bottom="0" left="10"/></padding>
+                <Label fx:id="loggedInUserLabel" text="Logged in as: " style="-fx-font-style: italic; -fx-text-fill: gray;"/>
+            </HBox>
+        </top>
+
+        <left>
+            <VBox spacing="5">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <Label text="Users (Click to whisper):" style="-fx-font-weight: bold;"/>
+                <ListView fx:id="usersList" prefWidth="200" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </left>
+        <center>
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <Label fx:id="currentChatLabel" text="General Chat" style="-fx-font-weight: bold; -fx-font-size: 14px;" textFill="BLUE"/>
+                <ScrollPane fx:id="chatScrollPane" fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background: #f9f9f9;">
+                    <VBox fx:id="chatMessagesBox" spacing="6" style="-fx-padding: 10;"/>
+                </ScrollPane>
+                <HBox spacing="10">
+                    <TextField fx:id="messageField" promptText="Type a message..." HBox.hgrow="ALWAYS" onAction="#handleSend"/>
+                    <Button text="Send" onAction="#handleSend" prefWidth="80"/>
+                </HBox>
+            </VBox>
+        </center>
+    </BorderPane>
+
+</StackPane>
